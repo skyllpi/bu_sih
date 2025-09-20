@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Spinal Orthosis Pressure Visualizer</title>
+    <link rel="stylesheet" href="css/style.css">
+    <script type="importmap">
+        {
+            "imports": {
+                "three": "https://cdn.skypack.dev/three@0.129.0/build/three.module.js",
+                "three/addons/": "https://cdn.skypack.dev/three@0.129.0/examples/jsm/"
+            }
+        }
+    </script>
+</head>
+<body>
+    <div class="container">
+        <div class="sidebar">
+            <div class="header">
+                <h1>SpinObar Pro</h1>
+                <p>Real-time Pressure Monitoring</p>
+            </div>
+            <div class="status-card">
+                <div class="status-indicator">
+                    <div class="status-dot" id="connectionStatus"></div>
+                    <span id="connectionText">Connecting...</span>
+                </div>
+                <div class="metric">
+                    <div class="metric-label">Max Pressure</div>
+                    <div class="metric-value" id="maxPressure">0<span class="metric-unit">kPa</span></div>
+                </div>
+                <div class="metric">
+                    <div class="metric-label">Avg Pressure</div>
+                    <div class="metric-value" id="avgPressure">0<span class="metric-unit">kPa</span></div>
+                </div>
+                <div class="metric">
+                    <div class="metric-label">Active Sensors</div>
+                    <div class="metric-value" id="activeSensors">0<span class="metric-unit">/ 64</span></div>
+                </div>
+            </div>
+            <div class="pressure-list">
+                <h3>Top Pressure Points</h3>
+                <div id="pressurePoints">
+                    <div class="pressure-item"><span class="pressure-location">--</span><span class="pressure-value">--</span></div>
+                </div>
+            </div>
+            <div class="legend">
+                <h3>Pressure Scale</h3>
+                <div class="legend-bar"></div>
+                <div class="legend-labels">
+                    <span>0 kPa</span><span>Low</span><span>Medium</span><span>High</span><span>50+ kPa</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="main-content">
+            <div class="controls">
+                <div class="control-group">
+                    <label class="control-label">View Mode</label>
+                    <button class="control-button active" id="pressureBtn">Pressure</button>
+                    <button class="control-button" id="anatomyBtn">Anatomy</button>
+                </div>
+                <div class="control-group">
+                    <label class="control-label">Actions</label>
+                    <button class="control-button" id="resetViewBtn">Reset View</button>
+                    <button class="control-button" id="pauseBtn">Pause</button>
+                </div>
+            </div>
+            <div id="canvas-container">
+                <div class="loading" id="loadingIndicator">
+                    <div class="spinner"></div>
+                    <div>Loading 3D Model...</div>
+                    <div class="error-message" id="errorMessage" style="display: none;">
+                        <strong>Error:</strong> Cannot load model.
+                        <br><br>
+                        <strong>Solutions:</strong>
+                        <br>1. Run from a local server.
+                        <br>2. Check the file path.
+                        <br><br>
+                        <button class="retry-button" id="retryBtn">Try Again</button>
+                        <button class="retry-button" id="fallbackBtn">Use Demo Model</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script type="module" src="js/main.js"></script>
+</body>
+</html>

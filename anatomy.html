@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Anatomy Viewer</title>
+  <style>
+    body { margin: 0; overflow: hidden; background: #2c3e50; font-family: Arial, sans-serif; }
+    #anatomy-canvas-container { width: 100vw; height: 100vh; }
+
+    .control-panel {
+      position: absolute; top: 10px; left: 10px;
+      display: flex; flex-direction: column;
+    }
+    .control-button {
+      margin: 5px 0; padding: 8px 12px;
+      background: #3498db; color: white; border: none;
+      border-radius: 5px; cursor: pointer;
+    }
+    .control-button.active { background: #2ecc71; }
+
+    #anatomyLoadingIndicator {
+      position: absolute; bottom: 10px; left: 10px; color: white;
+    }
+
+    .info-panel {
+      position: absolute; top: 10px; right: 10px; color: white;
+    }
+    .metric-unit { font-size: 0.8em; color: #aaa; }
+  </style>
+</head>
+<body>
+  <div id="anatomy-canvas-container"></div>
+
+  <div class="control-panel">
+    <button id="maleBtn" class="control-button active">Male</button>
+    <button id="skeletonBtn" class="control-button">Skeleton</button>
+    <button id="scoliosisBtn" class="control-button">Deformed skeleton</button>
+    <button id="wireframeBtn" class="control-button">Wireframe</button>
+    <button id="resetAnatomyBtn" class="control-button">Reset</button>
+  </div>
+
+  <div id="anatomyLoadingIndicator">
+    <div>Loading...</div>
+    <div>0%</div>
+  </div>
+
+  <div class="info-panel">
+    <div id="currentModel">Male Torso</div>
+    <div id="polyCount"></div>
+    <div id="modelInfo"></div>
+  </div>
+
+  <script type="module">
+    import AnatomyView from "./js/AnatomyView.js";
+    new AnatomyView();
+  </script>
+</body>
+</html>
